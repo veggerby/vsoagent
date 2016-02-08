@@ -26,6 +26,6 @@ COPY agent.config /opt/vsoagent/agent/.agent
 RUN chown -R vsoservice /opt/vsoagent
 
 USER vsoservice
-ENTRYPOINT /bin/bash
+#ENTRYPOINT /bin/bash
 
 CMD [ "node", "vsoagent.js" ]
