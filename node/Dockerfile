@@ -3,8 +3,7 @@ MAINTAINER Jesper Veggerby <jesper@veggerby.com>
 # heavily inspired by https://github.com/jgarverick/vsoagent/tree/master/node
 
 ###########################################################
-#  Install node.js and npm dependencies (grunt, bower, vsoagent-installer)
-#  and some additional nice-to-haves (jake, yeoman, gulp)
+#  Install node.js and npm dependencies (gulp, bower, vsoagent-installer)
 ###########################################################
 
 RUN npm install -g vsoagent-installer bower gulp
@@ -26,16 +25,7 @@ WORKDIR /opt/vsoagent/agent
 COPY agent.config /opt/vsoagent/agent/.agent
 RUN chown -R vsoservice /opt/vsoagent
 
-###########################################################
-#  Optional - install Team Explorer Everywhere 2013
-#  * This is being built using Docker within a Boot2Docker
-#    instance.  The path being used for the TEE files can be
-#    changed to match the directory structure you wish to use.
-###########################################################
-
-
-#COPY tee /opt/tee
-#ENV PATH $PATH:/opt/tee
-
 USER vsoservice
 ENTRYPOINT /bin/bash
+
+CMD [ "node", "vsoagent.js" ]
